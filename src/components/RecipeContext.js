@@ -16,16 +16,10 @@ export const RecipeProvider = (props) => {
             ingridList:'ביצה, מלח',
             cookingTime:'חצי שעה',
             instructions:'חממו מחבת עם שמן. ערבבו את הביצה, תבשלו עד שמוכן',
-            id:1
+            id:2
         }
 
-
-
-   ]);
-   
-   
-   
-   
+   ]);   
    
     return (
         <RecipeContext.Provider value={[recipes, setRecipes]}>

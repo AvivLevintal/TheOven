@@ -4,8 +4,8 @@ import AddRecipe from './components/AddRecipe.js';
 import {RecipeProvider} from './components/RecipeContext.js';
 import RecipeList from './components/RecipeList.js';
 
-function App() {
 
+function App() {  
 
   return (
     <RecipeProvider>

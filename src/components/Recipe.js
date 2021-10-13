@@ -20,8 +20,6 @@ else if(type === 'describedRecipe'){
         <p>{recipe.instructions}</p>            
     </div>
     )
+}   
 }
-    
-}
-
 export default Recipe
