@@ -6,14 +6,36 @@ const AddRecipe = () => {
     const [ingridList, setIngrid] = useState();
     const [cookingTime, setCookingTime] = useState();
     const [instructions, setInstructions] = useState();
-    
+    const [fetchedData, setFetchedData] = useState();
+
     const [recipes, setRecipes] = useContext(RecipeContext);
 
-    const addRecipe = (e) => {
+
+    async function fetchData(){
+        const { data } = await fetch('http://localhost:5000/addRecipe', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              recipeName: recipes[0].recipeName,
+              ingridList: recipes[0].ingridList,
+              cookingTime: recipes[0].cookingTime,
+              instructions: recipes[0].instructions
+            })
+          })
+          setFetchedData(data)
+    }
+    
+
+
+    const addRecipe = async (e) => {
         e.preventDefault();
 
         setRecipes(prevRecipes => [...prevRecipes, {recipeName: recipeName, ingridList: ingridList, cookingTime: cookingTime, instructions: instructions, id: recipes.length-1}]);
-
+        fetchData();
+        
     }
     const onSubmit = () => {
         console.log('test')

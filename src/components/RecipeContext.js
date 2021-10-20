@@ -1,10 +1,10 @@
-import React, {createContext, useState} from 'react'
+import React, {createContext, useState, useEffect} from 'react'
 
 export const RecipeContext = createContext();
 
 export const RecipeProvider = (props) => {
    const [recipes, setRecipes] = useState([
-        {
+        /*
             recipeName:'שניצל',
             ingridList:'חזה עוף, ביצה, מלח, חרדל, פירוריי לחם',
             cookingTime:'חצי שעה',
@@ -17,9 +17,16 @@ export const RecipeProvider = (props) => {
             cookingTime:'חצי שעה',
             instructions:'חממו מחבת עם שמן. ערבבו את הביצה, תבשלו עד שמוכן',
             id:2
-        }
+        }*/
 
-   ]);   
+   ]);
+
+   useEffect(() => {
+    fetch('http://localhost:5000/displayCurrentRecipes')
+      .then((response) => response.json())
+      .then((data) => setRecipes(data))
+      .catch((error) => console.log(error.message));
+  }, []);
    
     return (
         <RecipeContext.Provider value={[recipes, setRecipes]}>
