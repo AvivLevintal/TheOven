@@ -19,14 +19,9 @@ export const RecipeProvider = (props) => {
             id:2
         }*/
 
-   ]);
+    ]);
 
-   useEffect(() => {
-    fetch('http://localhost:5000/displayCurrentRecipes')
-      .then((response) => response.json())
-      .then((data) => setRecipes(data))
-      .catch((error) => console.log(error.message));
-  }, []);
+
    
     return (
         <RecipeContext.Provider value={[recipes, setRecipes]}>

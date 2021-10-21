@@ -6,7 +6,7 @@ const AddRecipe = () => {
     const [ingridList, setIngrid] = useState();
     const [cookingTime, setCookingTime] = useState();
     const [instructions, setInstructions] = useState();
-    const [fetchedData, setFetchedData] = useState();
+
 
     const [recipes, setRecipes] = useContext(RecipeContext);
 
@@ -19,13 +19,13 @@ const AddRecipe = () => {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              recipeName: recipes[0].recipeName,
-              ingridList: recipes[0].ingridList,
-              cookingTime: recipes[0].cookingTime,
-              instructions: recipes[0].instructions
+              recipeName: recipeName,
+              ingridList: ingridList,
+              cookingTime: cookingTime,
+              instructions: instructions
             })
           })
-          setFetchedData(data)
+
     }
     
 

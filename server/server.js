@@ -30,25 +30,26 @@ const Recipe = mongoose.model('Recipe', recipeSchema, 'recipes')
 
 
 
-const query = Recipe.find({});
-
-query.exec(function (err, recipe) {
-    if (err) return handleError(err);
-// Prints "Space Ghost is a talk show host."
-console.log(recipe);
-});
 
 
 
 app.post('/addRecipe', (req,res) => {
 
-  console.log(req.body  );
+  console.log(req.body);
   sendRecipeDB(req.body, Recipe);
 
 });
 app.get('/displayCurrentRecipes', (req,res) => {
 
-  res.end(JSON.stringify(query))
+  const query = Recipe.find({}).lean();
+
+  query.exec(function (err, recipe) {
+      if (err) return handleError(err);
+        // Prints "Space Ghost is a talk show host."
+        res.send(JSON.stringify(recipe));
+        //console.log(recipe[0].recipeName);
+
+  });
 });
 
 app.listen(5000, () => {
