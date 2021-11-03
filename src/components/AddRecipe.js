@@ -11,7 +11,7 @@ const AddRecipe = () => {
     const [recipes, setRecipes] = useContext(RecipeContext);
 
 
-    async function fetchData(){
+    async function sendRecipeDB(){
         const { data } = await fetch('http://localhost:5000/addRecipe', {
             method: 'POST',
             headers: {
@@ -34,7 +34,7 @@ const AddRecipe = () => {
         e.preventDefault();
 
         setRecipes(prevRecipes => [...prevRecipes, {recipeName: recipeName, ingridList: ingridList, cookingTime: cookingTime, instructions: instructions, id: recipes.length-1}]);
-        fetchData();
+        sendRecipeDB();
         
     }
     const onSubmit = () => {

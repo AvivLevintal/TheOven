@@ -20,8 +20,20 @@ export const RecipeProvider = (props) => {
         }*/
 
     ]);
+    const fetchRecipes = async() => {
+        const { data } = await fetch('http://localhost:5000/displayCurrentRecipes', {
+            method: 'GET',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+          }).then(response => response.text())
+          .then(result =>  setRecipes(JSON.parse(result)))
+          .catch(error => console.log(error));
 
-
+    }
+    fetchRecipes();
+    console.log(recipes);
    
     return (
         <RecipeContext.Provider value={[recipes, setRecipes]}>
